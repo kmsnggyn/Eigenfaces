@@ -37,7 +37,7 @@ title("First 16 Eigenfaces")
 myFace = zeros(n*m,20);
 
 for i=1:20
-    filename = fullfile("myface",strcat('my_face_', num2str(i), '.pgm'));
+    filename = fullfile(["myface/my_face_", i, ".pgm"])
     myFaces = imread(filename);
     myFace(:,i) = reshape(myFaces,n*m,1);
 end
@@ -58,10 +58,9 @@ imagesc(myFaces), pbaspect([168*5 192*4 1]), axis off;
 title("My Faces")
 
 myFaceMS = myFace(:,1) - avgFace;
- 
+%% 
 % The top left face will be reconstructed.
-
-%% 1) Reconstruction with gradually increasing r
+% 1) Reconstruction with gradually increasing r
 
 figure;
 tic
@@ -72,10 +71,10 @@ for r=5:5:1250
     pause(0.001)
 end
 toc
-
-%% 2) Reconstruction result comparision by increading r
+% 2) Reconstruction result comparision by increading r
 
 figure;
+
 i = 1;
 subplot(2,5,1)
 imagesc(reshape(myFace(:,1),n,m)), axis off, pbaspect(ratio);
@@ -105,7 +104,7 @@ subplot(1,2,2), imagesc(reshape(P2(:,1),n,m)); colormap gray, axis off
 title(['Person ',num2str(P2num)])
 pbaspect ([168 192 1])
 
-%% Project onto eigenfaces
+% project onto eigenfaces
 PCAmode = [6 11];
 
 PCACoordP1 = U(:,PCAmode)'*P1ms;
@@ -120,4 +119,5 @@ legend(['Person ',num2str(P1num)], ['Person ',num2str(P2num)])
 xlabel(['c ' num2str(PCAmode(1))]) 
 ylabel(['c ' num2str(PCAmode(2))])
 
+%% 
 % Face recognition can be done by clustering if the coordinates are well separated
