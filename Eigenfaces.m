@@ -88,6 +88,7 @@ for r = [5 10 25 50 100 250 500 1000 2000]
     imagesc(reshape(reconFace,n,m)), axis off, pbaspect(ratio);
     title(['r = ',num2str(r,'%d')]);
 end
+
 %% Face recognition of two people that are not in the training set
 
 P1num = 37;  % person number 37
